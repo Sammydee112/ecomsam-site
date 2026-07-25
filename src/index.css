@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-near-black: #0A0A0A;
+  --color-off-white: #F5F6FA;
+  --color-soft-white: #EDEDED;
+  --color-body-dark: #1A1A2E;
+  --color-gold: #F0A500;
+
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -30px); }
+}
+.animate-drift1 {
+  animation: drift1 12s ease-in-out infinite;
+}
+
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-40px, 30px); }
+}
+.animate-drift2 {
+  animation: drift2 14s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+@keyframes gridPan {
+  0% { background-position: 0 0; }
+  100% { background-position: 48px 48px; }
+}
+.bg-grid {
+  animation: gridPan 8s linear infinite;
+}
+@keyframes spinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spinSlow {
+  animation: spinSlow 30s linear infinite;
+}
+
+@keyframes wordSwap {
+  0% { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-wordSwap {
+  animation: wordSwap 0.6s ease-out;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-gradient-to-r from-gold to-amber-400 text-near-black font-heading font-bold
+           rounded shadow-lg shadow-gold/20
+           transition-all duration-300 ease-out
+           hover:shadow-gold/30 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-block border border-white/20 text-soft-white font-heading font-semibold rounded
+           transition-all duration-300 ease-out
+           hover:border-white/40 hover:bg-white/[0.04];
+  }
+
+  .card-interactive {
+    @apply border border-white/10 rounded-xl
+           transition-all duration-300 ease-out
+           hover:border-white/20 hover:bg-white/[0.03] hover:-translate-y-0.5;
+  }
+
+  .card-interactive-light {
+    @apply border border-body-dark/10 rounded-xl bg-white
+           shadow-lg shadow-black/[0.06]
+           transition-all duration-300 ease-out
+           hover:border-gold/25 hover:shadow-xl hover:shadow-gold/[0.08] hover:-translate-y-0.5;
+  }
+
+  .input-field {
+    @apply bg-white/5 border border-white/10 rounded px-5 py-4 text-soft-white
+           placeholder:text-soft-white/40 font-body
+           transition-all duration-300 ease-out
+           focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30;
+  }
+
+  .nav-link {
+    @apply transition-colors duration-300 ease-out hover:text-gold;
+  }
+}
